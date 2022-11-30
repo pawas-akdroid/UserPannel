@@ -13,8 +13,8 @@ const GamesPlayed = () => {
     const [page, setPage] = useState(1)
 
     useEffect(() => {
-
-        TokenUrl().get('/played-game').then((res) => {
+        setLoading(true)
+        TokenUrl().get(`/played-game?page=${page}`).then((res) => {
             setData(res?.data?.data?.data)
             setPages(res?.data?.data?.totalPages)
             setLoading(false)
@@ -22,7 +22,7 @@ const GamesPlayed = () => {
             setLoading(false)
             ErrorHandler(err)
         })
-    }, [])
+    }, [page])
     return (
         <>
             <>
@@ -70,7 +70,7 @@ const GamesPlayed = () => {
                                                         {e?.Game?.charge}
                                                     </td>
                                                     <td className="py-4 px-6">
-                                                        {e?.Game?.GameIterations?.winning_number ? e?.Game?.GameIterations?.winning_number  : "In-Progress"}
+                                                        {e?.Game?.GameIterations?.winning_number ? e?.Game?.GameIterations?.winning_number : "In-Progress"}
                                                     </td>
 
                                                 </tr>

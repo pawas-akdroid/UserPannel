@@ -17,6 +17,7 @@ function Games() {
     }).catch((err) => {
       ErrorHandler(err)
     })
+  
   }, [])
   return (
     loading? <Loadings/> : 

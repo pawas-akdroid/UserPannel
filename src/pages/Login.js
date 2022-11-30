@@ -77,7 +77,6 @@ const LoginMode = ({ setMode }) => {
             console.log(res?.data?.data);
             setSuccess(true)
         }).catch(err => {
-            console.log(err.response)
             ErrorHandler(err)
         })
     }
