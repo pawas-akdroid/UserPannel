@@ -6,7 +6,7 @@ import axios from 'axios'
 
 
 export const Url = axios.create({
-    baseURL: `https://kinkhelpoint.thriftlynepal.com/api/v1/user`,
+    baseURL: `http://44.237.37.194:6001/api/v1/user`,
   
 })  
 
@@ -18,18 +18,18 @@ export const TokenUrl =()=>{
    
     
     return axios.create({
-        baseURL: `https://kinkhelpoint.thriftlynepal.com/api/v1/user`,
+        baseURL: `http://44.237.37.194:6001/api/v1/user`,
         headers:{
             "Authorization":`Bearer ${token}`,
             "site" : site,
-            'Access-Control-Allow-Origin': 'https://kinkhelpoint.thriftlynepal.com/api/v1/user'
+            'Access-Control-Allow-Origin': 'http://44.237.37.194:6001/api/v1/user'
         }
       
     })
 } 
 
 
-export const  GameImgUrl ="https://kinkhelgame.thriftlynepal.com/"
-export const  ImgUrl ="https://kinkhelpoint.thriftlynepal.com/"
+export const  GameImgUrl ="http://52.26.60.188:6969/"
+export const  ImgUrl ="http://44.237.37.194:6001/"
 export const  ImgUrl2 ="http://localhost:6001/"
 

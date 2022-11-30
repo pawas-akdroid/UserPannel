@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { fetchTokenSuccess } from "../action/Token";
 import GeoLocation from "../components/Location";
 import { TokenUrl } from "../Utilities/Urls";
-import { fetchUserSuccess } from "../action/UserAction";
 
 
 const RequireAdmin = (props) => {
@@ -18,11 +17,13 @@ const RequireAdmin = (props) => {
                 console.log(err?.response?.status)
                 if (err?.response?.status === 401) {
                     navigate('/login')
-                    dispatch(fetchUserSuccess(null))
                     dispatch(fetchTokenSuccess(null))
                 }
             }).then((res)=>null)
         }, [])
+    }else{
+        navigate('/login')
+        dispatch(fetchTokenSuccess(null))
     }
    
 

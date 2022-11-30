@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mantine/carousel": "^5.7.0",
     "@mantine/core": "^5.1.4",
     "@mantine/hooks": "^5.1.4",
     "@mantine/modals": "^5.2.0",
@@ -21,6 +22,7 @@
     "@syncfusion/ej2-react-schedule": "^19.4.50",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.2",
+    "embla-carousel-react": "^7.0.5",
     "filepond": "^4.30.4",
     "filepond-plugin-file-encode": "^2.1.10",
     "filepond-plugin-image-crop": "^2.0.6",
@@ -40,6 +42,7 @@
     "react-loading": "^2.0.3",
     "react-phone-input-2": "^2.15.1",
     "react-phone-number-input": "^3.2.7",
+    "react-qr-scanner": "^1.0.0-alpha.11",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",

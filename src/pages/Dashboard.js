@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
+import { ImgUrl, TokenUrl } from '../Utilities/Urls';
+import { ErrorHandler } from '../components/NotificationProvider';
+import Header, { Title } from '../components/Header';
+import { Carousel } from '@mantine/carousel';
+import { Grid } from '@mantine/core';
 
-
-import trophy from './trophy-png-30567.png';
-import joystick from './Joystick.png';
-import Carousel from '../components/Carousel';
 
 
 const Dashboard = () => {
@@ -17,6 +18,26 @@ const Dashboard = () => {
   );
 
 
+  const [point, setPoint] = useState("")
+  const [clients, setClients] = useState([])
+  const [banner, setBanner] = useState([])
+  const [badge, setBadge] = useState("")
+
+  useEffect(() => {
+    Title("Dashboard")
+    TokenUrl().get('/dashboard').then((res) => {
+      setPoint(res?.data?.data?.point)
+      console.log(res?.data?.data)
+      setBanner(res?.data?.data?.banner['rows'])
+      setBadge(res?.data?.data?.badge['rows'])
+      setClients(res?.data?.data?.clients['rows'])
+    }).catch((err) => {
+      console.log(err)
+      ErrorHandler(err)
+    })
+  }, [])
+
+
 
   return (
     <div>
@@ -24,67 +45,64 @@ const Dashboard = () => {
       <div className="ml-5 align-center mb-5">
 
 
-        <div class=" ml-5 heading-table">
-          <h1>Dashboard</h1>
+      <div class="flex gap-3 grid-cols-3 p-2 justify-between flex-wrap">
+          <div class="w-60 bg-white p-5 rounded-2xl shadow-2xl transtiton-all hover:shadow-none">
+
+            <div class="flex content-center justify-between">
+              <div class="left">
+                <h3>Total Remaining Points</h3>
+                <h1> {point.points}</h1 >
+              </div>
+
+            </div>
+          </div>
         </div>
 
-        <div class="flex gap-3 grid-cols-3 p-2 justify-between flex-wrap">
-          <div class="w-60 bg-white p-5 rounded-2xl shadow-2xl transtiton-all hover:shadow-none">
-            <span ><img className="w-12 h-12 rounded-lg" src={trophy} alt="" /></span>
-            <div class="flex content-center justify-between">
-              <div class="left">
-                <h3>Total Points Earned</h3>
-                <h1>1000 Points</h1 >
-              </div>
+        <Grid className='mt-10'>
+          <Grid.Col sm={6}>
+            {banner.length > 0 ? 
+            <><Header title={"Banner"}/>
+              <Carousel slideSize="50%" height={300} slideGap="xl" controlsOffset="xs" controlSize={14} loop dragFree withIndicators>
+                {
+                  banner?.map((i, j) =>
+                    <Carousel.Slide key={j}>
+                      <Grid>
+                        <Grid.Col sm={12}>
+                          <img src={`${ImgUrl}${i.image}`} />
+                        </Grid.Col>
+                      </Grid>
+                    </Carousel.Slide>
 
-            </div>
+                  )
+                }
 
-            <input id="disabled-range" type="range" value="20" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" disabled />
-          </div>
+              </Carousel></>
+              :
+              ""}
+          </Grid.Col>
+          <Grid.Col sm={6}>
+            {clients.length > 0 ?
+            <> <Header title={"Client"}/>
+              <Carousel slideSize="50%" height={300} slideGap="xl" controlsOffset="xs" controlSize={14} loop dragFree withIndicators>
+                {
+                  clients?.map((i, j) =>
+                    <Carousel.Slide key={j}>
+                      <img src={`${ImgUrl}${i.image}`} />
+                    </Carousel.Slide>
 
-          <div class="w-60 bg-white p-5 rounded-2xl shadow-2xl transtiton-all hover:shadow-none">
-            <span ><img className="w-12 h-12 rounded-lg" src={joystick} alt="" /></span>
-            <div class="flex content-center justify-between">
-              <div class="left">
-                <h3>Total Games Played</h3>
-                <h1>5 Games</h1 >
-              </div>
+                  )
+                }
 
-            </div>
+              </Carousel> </>: ""
+            }
 
-
-          </div>
-
-
-          <div class="w-60 bg-white p-5 rounded-2xl shadow-2xl transtiton-all hover:shadow-none">
-            <span ><img className="w-12 h-12 rounded-lg" src={joystick} alt="" /></span>
-            <div class="flex content-center justify-between">
-              <div class="left">
-                <h3>Total Points Spent</h3>
-                <h1>200 Points</h1 >
-              </div>
-
-            </div>
-
-
-          </div>
-
-
-          <div class="w-60 bg-white p-5 rounded-2xl shadow-2xl transtiton-all hover:shadow-none">
-            <span ><img className="w-12 h-12 rounded-lg" src={joystick} alt="" /></span>
-            <div class="flex content-center justify-between">
-              <div class="left">
-                <h3>Total Games Won</h3>
-                <h1>1000 Points</h1 >
-              </div>
-
-            </div>
-
-          </div>
+          </Grid.Col>
+        </Grid>
 
 
 
-        </div>
+
+    
       </div>
 
     </div>

@@ -5,6 +5,8 @@ import { Header } from '../../components';
 import { ErrorHandler } from '../../components/NotificationProvider';
 import { TokenUrl } from '../../Utilities/Urls';
 import ReactPhoneInput from "react-phone-input-2";
+import { Loadings } from '../../components/Loading';
+import { Title } from '../../components/Header';
 
 function Point() {
 
@@ -20,20 +22,19 @@ function Point() {
 
 
   useEffect(() => {
+    Title("Points")
     TokenUrl().get('/points').then(res => {
-      console.log(res?.data?.data)
       setData(res?.data?.data)
+      setLoading(false)
       setRefresh(false)
     }).catch((err) => {
-      console.log(err)
       ErrorHandler(err)
+      setLoading(false)
     })
     TokenUrl().get('/points-details').then(res => {
-      console.log(res?.data?.data)
       setList(res?.data?.data)
       setRefresh(false)
     }).catch((err) => {
-      console.log(err)
       ErrorHandler(err)
     })
 
@@ -49,10 +50,8 @@ function Point() {
     setTimeout(() => setDisabled(false), 60000)
   }
 
-
-
-
   return (
+    loading ? <Loadings/> :
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl dark:bg-gray-600 dark:text-gray-200">
       <Header category="Point" title="Point Details" />
 
@@ -147,7 +146,7 @@ const PointTransfer = ({ setRefresh, Wait, setDisabled, setDisplay }) => {
     })
   }
 
-  return (
+  return ( 
     <>
       <form onSubmit={handleSendPoint}>
         <div className='flex text-base mb-2'>

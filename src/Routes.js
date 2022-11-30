@@ -1,5 +1,5 @@
 import React from 'react';
-import {MdDashboard,MdGames } from 'react-icons/md'
+import {MdDashboard,MdGames, MdNotifications } from 'react-icons/md'
 import {FiUsers, FiUser} from 'react-icons/fi'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { RiCouponLine } from 'react-icons/ri'
@@ -53,6 +53,16 @@ const Routes = [
         link:'points-redeem'
       },
       
+    ],
+  },
+  {
+    title: 'Notifications',
+    links: [
+      {
+        name: 'Notification',
+        icon: <><MdNotifications/></>,
+        link:'notifications'
+      },
     ],
   },
   

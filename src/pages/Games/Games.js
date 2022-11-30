@@ -52,21 +52,21 @@ function Games() {
                   <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
                     <td className="py-4 px-6 font-semibold text-gray-900 dark:text-white">
-                      <Link to={`${e.id}`/`${e.Game.id}`}>
-                        {e.Game.Category.name}
+                      <Link to={`${e.id}`}>
+                        {e?.Category.name} ({e?.name})
                       </Link>
 
                     </td>
                     
                     <td className="py-4 px-6 font-semibold text-gray-900 dark:text-white">
-                      {e.Game.charge}
+                      {e?.charge}
                     </td>
                     <td className="py-4 px-6 font-semibold text-gray-900 dark:text-white">
-                      {new Date(e.Game.closing_time).toLocaleString()}
+                      {new Date(e?.closing_time).toLocaleString()}
                     </td>
                     <td className="py-4 px-6">
-                      <Link to={`${e.id}/${e.Game.id}/play`}>
-                        <p className="font-medium text-green-600 dark:text-red-500 hover:underline mr-2">
+                      <Link to={`${e.id}/play`}>
+                        <p className="font-medium text-green-600 dark:text-green-500 hover:underline mr-2">
                           Play
                         </p>
                       </Link>

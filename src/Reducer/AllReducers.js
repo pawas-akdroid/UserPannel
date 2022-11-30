@@ -5,7 +5,6 @@ const { default: userReducer } = require("./UserReducer");
 const { default: siteReducer } = require("./SiteReducers");
 
 const allReducers = combineReducers({
-    authUser: userReducer,
     authToken: tokenReducer,
     site: siteReducer
 })

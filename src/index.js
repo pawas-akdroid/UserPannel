@@ -15,7 +15,6 @@ const store = createStore(allReducers, persistedState)
 store.subscribe(() => {
   saveState({
     authToken: store.getState().authToken,
-    authUser: store.getState().authUser,
     site: store.getState().site,
 
   })

@@ -66,7 +66,6 @@ const LoginMode = ({ setMode }) => {
     const [OTP, setOTP] = useState("")
     const [success, setSuccess] = useState(false)
     const token = useSelector(p => p.token?.token)
-    const merchant = useSelector(p => p.merchant?.merchant)
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -87,12 +86,12 @@ const LoginMode = ({ setMode }) => {
     }
 
     useEffect(() => {
-        if (merchant && token) {
+        if (token) {
             const from = location.state?.from?.pathname || "/";
             history(from)
         }
         Title("Login")
-    }, [merchant, token])
+    }, [ token])
 
 
     const renderTime = () => React.Fragment;
@@ -112,7 +111,6 @@ const LoginMode = ({ setMode }) => {
         Url.post(`/login-verify/${log_phone}`, body).then((res) => {
             console.log(res?.data?.data)
             dispatch(fetchTokenSuccess(res?.data?.data?.token))
-            dispatch(fetchUserSuccess(res?.data?.data?.user))
             dispatch(fetchSiteSuccess(res?.data?.data?.user?.site))
             history('/')
             SuccessNotification({ title: "Welcome!!", message: "You have been Logged in." })
@@ -287,6 +285,7 @@ const RegisterMode = ({ setMode }) => {
 
 
     useEffect(() => {
+        Title("Register")
         Url.get('/sites').then((res) => {
             setSites(res?.data?.data)
             console.log(res?.data?.data)
