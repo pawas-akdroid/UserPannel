@@ -103,7 +103,6 @@ const SelfPlay = () => {
 
   const playNow = () => {
     if (selectedNumbers.length === allowed) {
-      console.log(plusOne)
       if (plusOne === false || plusSelectedNumbers.length === plusAllowed) {
         setConfirmBox(true)
       }
@@ -165,17 +164,21 @@ const SelfPlay = () => {
       setSubmitLoading(true)
       TokenUrl().post(`/verify-transfer-token`, { "token": OTP }).then(res => {
         SuccessNotification({ title: "Congratulation", message: "Your otp has been verified." })
-        TokenUrl().post('/play-game', { game_id: uid, "chosen_number": selectedNumbers.toString(), "iteration_id": iteration_id, "charge":data?.charge }).then(res => {
+        TokenUrl().post('/play-game', { game_id: uid, "chosen_number": selectedNumbers.toString(), "iteration_id": iteration_id, "charge": data?.charge }).then(res => {
           SuccessNotification({ title: "Congratulation", message: "You have played the game." })
           history('/games')
         }).catch(err => {
           setMain(true)
           setSelectedNumbers([])
+          setSubmitLoading(false)
+          setPlusSelectedNumbers([])
           ErrorHandler(err)
         })
       }).catch((err) => {
         setMain(true)
+        setSubmitLoading(false)
         setSelectedNumbers([])
+        setPlusSelectedNumbers([])
         ErrorHandler(err)
       })
 
