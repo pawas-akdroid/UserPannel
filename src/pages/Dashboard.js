@@ -6,6 +6,7 @@ import { ErrorHandler } from '../components/NotificationProvider';
 import Header, { Title } from '../components/Header';
 import { Carousel } from '@mantine/carousel';
 import { Grid } from '@mantine/core';
+import { Loadings } from '../components/Loading';
 
 
 
@@ -22,24 +23,24 @@ const Dashboard = () => {
   const [clients, setClients] = useState([])
   const [banner, setBanner] = useState([])
   const [badge, setBadge] = useState("")
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     Title("Dashboard")
     TokenUrl().get('/dashboard').then((res) => {
       setPoint(res?.data?.data?.point)
-      console.log(res?.data?.data)
+      setLoading(false)
       setBanner(res?.data?.data?.banner['rows'])
       setBadge(res?.data?.data?.badge['rows'])
       setClients(res?.data?.data?.clients['rows'])
     }).catch((err) => {
-      console.log(err)
       ErrorHandler(err)
     })
   }, [])
 
 
 
-  return (
+  return ( loading ? <Loadings/> :
     <div>
 
       <div className="ml-5 align-center mb-5">
