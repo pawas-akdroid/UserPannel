@@ -65,7 +65,7 @@ const PointRedeemed = () => {
                     {
                         state === 1 ?
                             <>
-                                <Button variant='outline' onClick={() => handleState(2)}>Switch to Scanner</Button>
+                               
                                 <Grid.Col span={12} >
                                     <h2 className=" text-base mb-4">
                                         <strong> Total Points: </strong> {point.points}
@@ -83,9 +83,7 @@ const PointRedeemed = () => {
                                         <Button variant='outline' type='submit'>Submit</Button>
                                     </form>
                                 </Grid.Col></> : <>
-                                <Grid.Col sm={12}>
-                                    <Button variant='outline' onClick={() => handleState(1)}>Switch to redeem code</Button>
-                                </Grid.Col>
+                                
                                 <Grid.Col sm={6}>
                                     
                                     <QrReader

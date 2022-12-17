@@ -7,7 +7,7 @@ import 'react-phone-input-2/lib/style.css'
 import { ErrorHandler, ErrorNotification, SuccessNotification, } from '../components/NotificationProvider';
 import { Box, Button, Input, PasswordInput, Select, Text, TextInput } from '@mantine/core';
 import OTPInput, { ResendOTP } from "otp-input-react";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { fetchUserSuccess } from '../action/UserAction';
 import axios from 'axios';
 import { Title } from '../components/Header';
@@ -74,7 +74,6 @@ const LoginMode = ({ setMode }) => {
             password: log_password
         }
         Url.post(`/login`, body).then((res) => {
-            console.log(res?.data?.data);
             setSuccess(true)
         }).catch(err => {
             ErrorHandler(err)
@@ -239,8 +238,8 @@ const LoginMode = ({ setMode }) => {
                                                         Login
                                                     </Buttons>
                                                     <Button variant='outline' onClick={() => setMode(2)}>Register</Button>
-
                                                 </div>
+                                                <Link to={'/forget-password'} className={"ml-5 block"}>Forget Password?</Link>
                                             </form>
                                         </>
                                         : <>

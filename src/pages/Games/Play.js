@@ -171,11 +171,13 @@ const SelfPlay = () => {
           setMain(true)
           setSelectedNumbers([])
           setSubmitLoading(false)
+          setOTP("")
           setPlusSelectedNumbers([])
           ErrorHandler(err)
         })
       }).catch((err) => {
         setMain(true)
+        setOTP("")
         setSubmitLoading(false)
         setSelectedNumbers([])
         setPlusSelectedNumbers([])

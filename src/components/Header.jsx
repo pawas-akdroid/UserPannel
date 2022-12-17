@@ -14,7 +14,7 @@ const Header = ({ category, title }) => (
 
 export const Title = (title) => {
   const sitename = (JSON.parse(localStorage.getItem("state")))?.site?.site?.sitename
-  return (document.title = `${title} - ${sitename ? sitename :"Merchant"}`)
+  return (document.title = `${title} - ${sitename ? sitename :"User Panel"}`)
 }
 
 export default Header;
