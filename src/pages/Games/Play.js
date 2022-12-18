@@ -14,6 +14,8 @@ import { Button, Modal, Grid } from '@mantine/core';
 import ReactPhoneInput from "react-phone-input-2";
 import { useNavigate, useParams } from "react-router-dom";
 import { Loadings } from "../../components/Loading";
+const parse = require('html-react-parser');
+
 
 const SelfPlay = () => {
   const { uid } = useParams()
@@ -231,7 +233,7 @@ const SelfPlay = () => {
             {main ?
               <Container fluid className='gameContainer'>
                 <h2 className="p-5 text-white">Description:</h2>
-                <p className="p-5">{data?.description}</p>
+                <p className="p-5">{parse(data?.description)}</p>
                 <Container className="d-flex align-items-center justify-content-center">
                   <Toast show={showToast} onClose={() => setShowToast(false)}>
                     <Toast.Header>
